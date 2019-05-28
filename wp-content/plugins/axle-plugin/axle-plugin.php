@@ -19,13 +19,18 @@ if (!defined('ABSPATH')) {
 class AxlePlugin{
 
 	function __construct(){
-		add_action('init', array($this ,'custom_post_type');
+		add_action('init', array($this,'custom_post_type'));
 	}
 	function activate(){
-		echo "the action activated";
+		//generate custom post type
+		$this->custom_post_type();
+		//flush rewrite rules
+		flush_rewrite_rules();
 	}
 
 	function deactivate(){
+		//flush rewrite rules
+		flush_rewrite_rules();
 
 	}
 
@@ -34,7 +39,7 @@ class AxlePlugin{
 	}
 
 	function custom_post_type(){
-		register_post_type( 'book', ['public' => 'true'] );
+		register_post_type( 'book', ['public' => true, 'label' => 'Books'] );
 	}
 }
 
