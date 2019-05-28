@@ -18,6 +18,9 @@ if (!defined('ABSPATH')) {
 
 class AxlePlugin{
 
+	function __construct(){
+		add_action('init', array($this ,'custom_post_type');
+	}
 	function activate(){
 		echo "the action activated";
 	}
@@ -28,6 +31,10 @@ class AxlePlugin{
 
 	function uninstall(){
 
+	}
+
+	function custom_post_type(){
+		register_post_type( 'book', ['public' => 'true'] );
 	}
 }
 
@@ -40,7 +47,7 @@ if (class_exists('AxlePlugin')) {
 register_activation_hook(__FILE__,array($axlePlugin,'activate'));
 	
 //deactivation
-register_activation_hook(__FILE__,array($axlePlugin,'deactivate'));
+register_deactivation_hook(__FILE__,array($axlePlugin,'deactivate'));
 
 //uninstall
 
